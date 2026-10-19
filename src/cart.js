@@ -35,7 +35,9 @@ function changeQuantity(cart, itemId, quantity) {
 }
 
 function removeFromCart(cart, itemId) {
-  return notImplemented();
+  const index = cart.findIndex(({ id }) => itemId === id);
+  cart.splice(index, 1);
+  return cart;
 }
 
 function calculateCartSubtotal() {
