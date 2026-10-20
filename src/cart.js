@@ -10,7 +10,11 @@ function addToCart(cart = [], item, quantity) {
   const existed = cart.find(({ id }) => item.id === id);
 
   if (existed) {
-    existed.quantity += quantity;
+    if (existed.quantity + quantity <= existed.stock) {
+      existed.quantity += quantity;
+    } else {
+      throw new RangeError('Out of range');
+    }
   } else {
     cart.push({ ...item, quantity });
   }
